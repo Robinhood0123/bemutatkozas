@@ -1,20 +1,23 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const sections = document.querySelectorAll("section");
-    sections.forEach(section => {
+document.addEventListener("DOMContentLoaded", () => {
+    const sections = Array.from(document.querySelectorAll("section"));
+
+    sections.forEach((section) => {
         section.style.opacity = "0";
-        section.style.transition = "opacity 1s";
+        section.style.transition = "opacity 1s ease-in-out";
     });
-    
-    function revealSections() {
-        sections.forEach(section => {
-            const sectionTop = section.getBoundingClientRect().top;
-            const windowHeight = window.innerHeight;
-            if (sectionTop < windowHeight - 100) {
+
+    const handleScroll = () => {
+        const windowHeight = window.innerHeight;
+
+        sections.forEach((section) => {
+            const distanceFromTop = section.getBoundingClientRect().top;
+            
+            if (distanceFromTop <= windowHeight - 100) {
                 section.style.opacity = "1";
             }
         });
-    }
+    };
 
-    window.addEventListener("scroll", revealSections);
-    revealSections();
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();  // Azonnali megjelenítéshez az oldal betöltésekor
 });

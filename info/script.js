@@ -19,5 +19,5 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll();  // Azonnali megjelenítéshez az oldal betöltésekor
+    handleScroll(); 
 });
